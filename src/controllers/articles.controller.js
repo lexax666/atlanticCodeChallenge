@@ -2,7 +2,12 @@ const ArticleModel = require("../models/articles.model");
 
 // post article
 exports.postArticle = async (req, res) => {
-    const articleReqData = new ArticleModel(req.body.article, req.body.authors);
+    if(!req.body || !req.body.article){
+        return res.status(400).json({
+            message: "expecting both article and author"
+        })
+    }
+    const articleReqData = new ArticleModel(req.body.article);
     try {
         // ArticleModel.postArt(articleReqData) will insert to two tables, articles and authors_articles. 
         // If one insert fails then no insert will be commited to neither table

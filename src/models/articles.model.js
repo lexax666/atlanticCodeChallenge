@@ -15,7 +15,9 @@ const Article = function(article, authors) {
 }
 
 Article.postArticle = async (article) => {
+    console.log("soGay1")
     const connection = await connectToDb();
+    console.log("soGay")
     const sqlQuery = `INSERT INTO articles (id, slug, title, dek, published_date, canonical_url, word_count, tags, embeds, lead_art_id) 
     values (${article.id}, 
         ${article.slug}, 
